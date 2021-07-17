@@ -124,7 +124,7 @@ class Reddit(commands.Cog):
 
         # Check if needs to enter a sub-reddit
         if message.content.startswith('/r/') or message.content.startswith('r/'):
-            for word in message.content.split(' '):
+            for word in message.content.replace(',', ' ').split(' '):
                 if 'r/' in word:
                     sub_name = word.split('r/')[-1]
 

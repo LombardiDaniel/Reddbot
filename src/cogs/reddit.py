@@ -124,15 +124,15 @@ class Reddit(commands.Cog):
 
         # Check if needs to enter a sub-reddit
         if message.content.startswith('/r/') or message.content.startswith('r/'):
-            for word in message.content.split(' '):
+            for word in message.content.replace(',', ' ').split(' '):
                 if 'r/' in word:
                     sub_name = word.split('r/')[-1]
 
-                sub_link = f'https://www.reddit.com/r/{sub_name}'
-                if MessageFormater.sub_exists(sub_link):
-                    await message.reply(sub_link)
-                else:
-                    await message.reply(MessageFormater.not_found(sub_link))
+                    sub_link = f'https://www.reddit.com/r/{sub_name}'
+                    if MessageFormater.sub_exists(sub_link):
+                        await message.reply(sub_link)
+                    else:
+                        await message.reply(MessageFormater.not_found(sub_link))
 
 
 def setup(client):

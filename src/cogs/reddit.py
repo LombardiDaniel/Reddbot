@@ -55,10 +55,8 @@ class Reddit(commands.Cog):
         for guild in self.client.guilds:
             usr_num += len(guild.members)
 
-        self.logger.info(
-            'Logged-in on %d servers, at the reach of %d users',
-            len(self.client.guilds), usr_num
-        )
+        print('Logged-in on %d servers, at the reach of %d users',
+            len(self.client.guilds), usr_num)
 
         await self.client.change_presence(activity=discord.Game(name='tmp'))
 

@@ -117,7 +117,7 @@ class MessageFormater:
 
         r = requests.get(sub_url)
 
-        return r.status_code == 404
+        return r.status_code != 404
 
 
     @staticmethod

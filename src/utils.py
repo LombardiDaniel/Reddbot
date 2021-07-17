@@ -81,7 +81,7 @@ class TimeHelper:
         url = request_url + 'Etc/' + TimeHelper.regions_dict[region].split('::')[0]
         r = requests.get(url)
 
-        datetime_obj = datetime.fromisoformat(r.json()['datetime'])
+        atetime_obj = datetime.fromisoformat(r.json()['datetime'])
 
         return datetime_obj
 
@@ -104,6 +104,35 @@ class MessageFormater:
                 return
             except Forbidden:
                 continue
+
+    @staticmethod
+    def sub_exists(sub_url: str) -> bool:
+        '''
+        Checks if a subreddit exists.
+        Args:
+            sub_url (str): url of the subreddit.
+        Returns:
+            exists (bool): True if sub exists.
+        '''
+
+        r = requests.get(sub_url)
+
+        return r.status_code == 404
+
+
+    @staticmethod
+    def not_found(sub_url: str) -> str:
+        '''
+        # Checks if a subreddit exists.
+        # Args:
+        #     sub_url (str): url of the subreddit.
+        # Returns:
+        #     exists (bool): True if sub exists.
+        '''
+        
+        msg = ""
+        msg += f"I couldn't find a sub with `{'r/' + sub_url.split('r/')[-1]}`"
+        return msg
 
     @staticmethod
     def development():

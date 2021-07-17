@@ -128,4 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Other
+*.DS_Store
 cp_to_pi.sh

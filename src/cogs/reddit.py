@@ -131,7 +131,10 @@ class Reddit(commands.Cog):
                     sub_name = word.split('r/')[-1]
 
                 sub_link = f'https://www.reddit.com/r/{sub_name}'
-                await message.reply(sub_link)
+                if MessageFormater.sub_exists(sub_link):
+                    await message.reply(sub_link)
+                else:
+                    await message.reply(MessageFormater.not_found(sub_link))
 
 
 def setup(client):

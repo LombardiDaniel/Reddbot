@@ -129,7 +129,7 @@ class MessageFormater:
         # Returns:
         #     exists (bool): True if sub exists.
         '''
-        
+
         msg = ""
         msg += f"I couldn't find a sub with `{'r/' + sub_url.split('r/')[-1]}`"
         return msg
@@ -163,17 +163,17 @@ class MessageFormater:
 
         lst_contributors = requests.get(url + '/contributors').json()
         embed_obj.add_field(
-            name='Principais colaboradores:',
-            value=", ".join([contributor['login'] for contributor in lst_contributors[0:4]]),
+            name='Main contributors:',
+            value=", ".join([contributor['login'] for contributor in lst_contributors[0:3]]),
             inline=True)
 
         date_time_obj = datetime.strptime(request['updated_at'], '%Y-%m-%dT%H:%M:%SZ')
         delta = datetime.now() - date_time_obj
 
-        msg = f"{delta.seconds//3600} horas atrás" if delta.days < 1 else f"{delta.days} dias atrás"
+        msg = f"{delta.seconds//3600} hours ago" if delta.days < 1 else f"{delta.days} days ago"
 
         embed_obj.add_field(
-            name='Último Update:',
+            name='Last Update:',
             value=msg,
             inline=True
         )

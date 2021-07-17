@@ -81,7 +81,7 @@ class TimeHelper:
         url = request_url + 'Etc/' + TimeHelper.regions_dict[region].split('::')[0]
         r = requests.get(url)
 
-        atetime_obj = datetime.fromisoformat(r.json()['datetime'])
+        datetime_obj = datetime.fromisoformat(r.json()['datetime'])
 
         return datetime_obj
 

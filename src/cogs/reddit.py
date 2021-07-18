@@ -51,6 +51,7 @@ class Reddit(commands.Cog):
         Used mainly for logging and a greet for the guilds
         '''
 
+        # Does not work since intents are currently disabled.
         usr_num = sum([len(guild.members) for guild in self.client.guilds])
 
         print(f'Logged-in on {len(self.client.guilds)} servers, at the reach of {usr_num} users')
@@ -93,7 +94,7 @@ class Reddit(commands.Cog):
         '''
         Replies with the bot link.
         '''
-        await ctx.channel.send("https://discord.com/api/oauth2/authorize?client_id=795344842305175593&permissions=8&scope=bot")
+        await ctx.channel.send("> https://discord.com/api/oauth2/authorize?client_id=795344842305175593&permissions=8&scope=bot")
 
     @tasks.loop(hours=1)
     async def check_day_meme_task(self):

@@ -192,12 +192,12 @@ class MessageFormater:
         msg = ""
         msg += "The command prefix is `__` (double underdscore).\n"
         msg += "Commands:\n"
-        msg += "> `__dev`: Shows development status.\n"
-        msg += "> `__link`: Gets the link to add the bot to your server.\n"
-        msg += "> `__ping`: Pings the bot server.\n"
-        msg += "> `__help`: Show this message.\n"
+        msg += "> `__dev`  :  Shows development status.\n"
+        msg += "> `__link` : Gets the link to add the bot to your server.\n"
+        msg += "> `__ping` : Pings the bot server.\n"
+        msg += "> `__help` : Shows this message.\n"
         msg += "> Whenever someone send a message containing `r/some_sub_name`, "
         msg += "I will reply with the link to the sub-reddit.\n"
-        msg += "> I will also reming the server when it is Wednesday or when the Weeknd arrives.\n"
+        msg += "> I will also remind the server when it is Wednesday or when the Weeknd arrives.\n"
 
         return msg

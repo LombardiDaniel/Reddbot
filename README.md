@@ -4,7 +4,7 @@
 
 <br />
 <p align="center">
-  <a href="https://discord.com/api/oauth2/authorize?client_id=795344842305175593&permissions=8&scope=bot">
+  <a href="https://discord.com/oauth2/authorize?client_id=865960918243999784&permissions=3072&scope=bot">
     <img src="./LOGO.png" alt="LOGO" width="200" height="200">
   </a>
 

@@ -25,6 +25,7 @@ class Reddit(commands.Cog):
                 }
             }
         - hours_period: (int) Period (T) of hours to make API call.
+        - meme_hour: (int) Time of day in 24h format to send the memes.
     '''
 
     wednesday_meme_url = 'https://i.imgur.com/uIdY2xe.jpeg'
@@ -36,6 +37,7 @@ class Reddit(commands.Cog):
 
         # Constants:
         self.hours_period = 0.5
+        self.meme_hour = 12
 
         for key in TimeHelper.regions_dict.keys():
             self.region_timers[key] = {
@@ -119,12 +121,12 @@ class Reddit(commands.Cog):
             # Check the time on the guild server
             # Wednesday
             if guild_now.weekday() == TimeHelper.Weekdays.WEDNESDAY:
-                if guild_now.time.hour == 1:
+                if guild_now.time.hour == self.meme_hour:
                     await MessageFormater.send_msg_in_guild(guild, Reddit.wednesday_meme_url)
 
             # Weeknd
             elif guild_now.weekday() == TimeHelper.Weekdays.FRIDAY:
-                if guild_now.time.hour == 1:
+                if guild_now.time.hour == self.meme_hour:
                     await MessageFormater.send_msg_in_guild(guild, Reddit.weeknd_meme_url)
 
     # AUTO:

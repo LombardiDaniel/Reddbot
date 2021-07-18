@@ -182,3 +182,21 @@ class MessageFormater:
         embed_obj.set_footer(text=f"{releases['tag_name']}")
 
         return embed_obj
+
+    @staticmethod
+    def help_msg():
+        '''
+        Set custom help command.
+        '''
+
+        msg = ""
+        msg += "The command prefix is `__` (double underdscore).\n"
+        msg += "Commands:\n"
+        msg += "> `__dev`: Shows development status.\n"
+        msg += "> `__link`: Gets the link to add the bot to your server.\n"
+        msg += "> `__help`: Show this message.\n"
+        msg += "> Whenever someone send a message containing `r/some_sub_name`, "
+        msg += "I will reply with the link to the sub-reddit.\n"
+        msg += "> I will also reming the server when it is Wednesday or when the Weeknd arrives.\n"
+
+        return msg

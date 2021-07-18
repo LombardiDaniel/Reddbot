@@ -55,7 +55,10 @@ class Reddit(commands.Cog):
 
         print(f'Logged-in on {len(self.client.guilds)} servers, at the reach of {usr_num} users')
 
-        await self.client.change_presence(activity=discord.Activity(name='looking at cool memes'))
+        await self.client.change_presence(activity=discord.Activity(
+            name=' cool memes | __help',
+            type=discord.ActivityType.watching
+            ))
 
     @commands.command(name='ping', aliases=["ping server"])
     async def ping(self, ctx):
@@ -65,7 +68,7 @@ class Reddit(commands.Cog):
         await ctx.channel.send(f"Latency: `{round(self.client.latency * 1000)}ms`")
 
     @commands.command(name='development', aliases=[
-        'dev', 'git', 'info', 'status', '-v', '--version'])
+        'dev', 'git', 'info', 'status'])
     async def development(self, ctx):
         '''
         Replies with an embed about the current state of development.
@@ -77,6 +80,20 @@ class Reddit(commands.Cog):
         msg += "Feel free to take a look at the code, report bugs, or even colaborate!"
 
         await ctx.channel.send(msg)
+
+    @commands.command(name='help', aliases=['h'])
+    async def help(self, ctx):
+        '''
+        Replies with the help command.
+        '''
+        await ctx.channel.send(embed=MessageFormater.help_msg())
+
+    @commands.command(name='link', aliases=['url'])
+    async def link(self, ctx):
+        '''
+        Replies with the bot link.
+        '''
+        await ctx.channel.send("https://discord.com/api/oauth2/authorize?client_id=795344842305175593&permissions=8&scope=bot")
 
     @tasks.loop(hours=1)
     async def check_day_meme_task(self):

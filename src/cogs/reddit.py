@@ -51,9 +51,7 @@ class Reddit(commands.Cog):
         Used mainly for logging and a greet for the guilds
         '''
 
-        usr_num = 0
-        for guild in self.client.guilds:
-            usr_num += len(guild.members)
+        usr_num = sum([len(guild.members) for guild in self.client.guild])
 
         print(f'Logged-in on {len(self.client.guilds)} servers, at the reach of {usr_num} users')
 
@@ -87,14 +85,15 @@ class Reddit(commands.Cog):
         '''
 
         for guild in self.client.guilds:
-            region_str = guild.region
+            region_str = str(guild.region)
 
             dt_now = datetime.now()
             guild_now = self.region_timers[region_str]['DateTimeObj']
 
             # Check if API Call is needed
             call_delta = dt_now - self.region_timers[region_str]['last_call']
-            if call_delta.hours > self.hours_period:
+            call_delta_hours = call_delta.seconds//3600
+            if call_delta_hours > self.hours_period:
                 guild_now = TimeHelper.time_from_region(region_str)
                 self.region_timers[region_str]['DateTimeObj'] = guild_now
                 self.region_timers[region_str]['last_call'] = dt_now
@@ -127,10 +126,12 @@ class Reddit(commands.Cog):
                 sub_name = word.split('r/')[-1]
 
                 sub_link = f'https://www.reddit.com/r/{sub_name}'
-                if MessageFormater.sub_exists(sub_link):
-                    await message.reply(sub_link)
-                else:
-                    await message.reply(MessageFormater.not_found(sub_link))
+                await message.reply(sub_link)
+                # GET Request was taking too long
+                # if MessageFormater.sub_exists(sub_link):
+                #     await message.reply(sub_link)
+                # else:
+                #     await message.reply(MessageFormater.not_found(sub_link))
 
 
 def setup(client):

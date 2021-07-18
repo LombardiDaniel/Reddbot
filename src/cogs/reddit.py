@@ -55,7 +55,7 @@ class Reddit(commands.Cog):
 
         print(f'Logged-in on {len(self.client.guilds)} servers, at the reach of {usr_num} users')
 
-        await self.client.change_presence(activity=discord.Game(name='tmp'))
+        await self.client.change_presence(activity=discord.Activity(name='looking at cool memes'))
 
     @commands.command(name='ping', aliases=["ping server"])
     async def ping(self, ctx):

@@ -135,7 +135,7 @@ class MessageFormater:
         return msg
 
     @staticmethod
-    def development():
+    def development() -> str:
         '''
         Uses the request to check for info about the current git version.
 
@@ -184,7 +184,7 @@ class MessageFormater:
         return embed_obj
 
     @staticmethod
-    def help_msg():
+    def help_msg() -> str:
         '''
         Set custom help command.
         '''
@@ -194,6 +194,7 @@ class MessageFormater:
         msg += "Commands:\n"
         msg += "> `__dev`: Shows development status.\n"
         msg += "> `__link`: Gets the link to add the bot to your server.\n"
+        msg += "> `__ping`: Pings the bot server.\n"
         msg += "> `__help`: Show this message.\n"
         msg += "> Whenever someone send a message containing `r/some_sub_name`, "
         msg += "I will reply with the link to the sub-reddit.\n"

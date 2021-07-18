@@ -86,7 +86,7 @@ class Reddit(commands.Cog):
         '''
         Replies with the help command.
         '''
-        await ctx.channel.send(embed=MessageFormater.help_msg())
+        await ctx.channel.send(MessageFormater.help_msg())
 
     @commands.command(name='link', aliases=['url'])
     async def link(self, ctx):

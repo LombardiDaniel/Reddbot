@@ -51,7 +51,7 @@ class Reddit(commands.Cog):
         Used mainly for logging and a greet for the guilds
         '''
 
-        usr_num = sum([len(guild.members) for guild in self.client.guild])
+        usr_num = sum([len(guild.members) for guild in self.client.guilds])
 
         print(f'Logged-in on {len(self.client.guilds)} servers, at the reach of {usr_num} users')
 

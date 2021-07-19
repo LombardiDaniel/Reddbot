@@ -97,7 +97,7 @@ class Reddit(commands.Cog):
         '''
         Replies with the bot link.
         '''
-        await ctx.channel.send("> https://discord.com/api/oauth2/authorize?client_id=795344842305175593&permissions=8&scope=bot")
+        await ctx.channel.send("> https://discord.com/oauth2/authorize?client_id=865960918243999784&permissions=3072&scope=bot")
 
     @tasks.loop(hours=1)
     async def check_day_meme_task(self):

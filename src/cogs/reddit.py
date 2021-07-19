@@ -1,5 +1,6 @@
-from datetime import datetime, timedelta
-import logging
+from datetime import datetime
+
+import validators
 
 import discord
 from discord.ext import commands, tasks
@@ -112,7 +113,7 @@ class Reddit(commands.Cog):
 
             # Check if API Call is needed
             call_delta = dt_now - self.region_timers[region_str]['last_call']
-            call_delta_hours = call_delta.seconds//3600
+            call_delta_hours = call_delta.seconds // 3600
             if call_delta_hours > self.hours_period:
                 guild_now = TimeHelper.time_from_region(region_str)
                 self.region_timers[region_str]['DateTimeObj'] = guild_now
@@ -142,7 +143,7 @@ class Reddit(commands.Cog):
 
         # Check if needs to enter a sub-reddit
         for word in message.content.replace(',', ' ').split(' '):
-            if 'r/' in word:
+            if 'r/' in word and not validators.url(word):
                 sub_name = word.split('r/')[-1]
 
                 sub_link = f'https://www.reddit.com/r/{sub_name}'

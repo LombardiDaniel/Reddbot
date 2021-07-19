@@ -57,8 +57,6 @@ class TimeHelper:
         SUNDAY          = 6
 
 
-
-
     @staticmethod
     def time_from_region(region: str) -> datetime:
         '''

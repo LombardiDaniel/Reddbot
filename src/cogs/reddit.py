@@ -38,7 +38,7 @@ class Reddit(commands.Cog):
 
         # Constants:
         self.hours_period = 0.5
-        self.meme_hour = 12
+        self.meme_hour = 15
 
         for key in TimeHelper.regions_dict.keys():
             self.region_timers[key] = {
@@ -121,13 +121,13 @@ class Reddit(commands.Cog):
 
             # Check the time on the guild server
             # Wednesday
-            if guild_now.weekday() == TimeHelper.Weekdays.WEDNESDAY:
-                if guild_now.time.hour == self.meme_hour:
+            if guild_now.weekday() == TimeHelper.Weekdays.WEDNESDAY.value:
+                if guild_now.now().hour == self.meme_hour:
                     await MessageFormater.send_msg_in_guild(guild, Reddit.wednesday_meme_url)
 
             # Weeknd
-            elif guild_now.weekday() == TimeHelper.Weekdays.FRIDAY:
-                if guild_now.time.hour == self.meme_hour:
+            elif guild_now.weekday() == TimeHelper.Weekdays.FRIDAY.value:
+                if guild_now.now().hour == self.meme_hour:
                     await MessageFormater.send_msg_in_guild(guild, Reddit.weeknd_meme_url)
 
     # AUTO:

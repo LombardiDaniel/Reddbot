@@ -38,7 +38,7 @@ class Reddit(commands.Cog):
 
         # Constants:
         self.hours_period = 0.5
-        self.meme_hour = 15
+        self.meme_hour = 12
 
         for key in TimeHelper.regions_dict.keys():
             self.region_timers[key] = {
@@ -102,7 +102,7 @@ class Reddit(commands.Cog):
     @tasks.loop(hours=1)
     async def check_day_meme_task(self):
         '''
-        Check if it is time to send a meme on the main TextChannel
+        Check if it is time to send a meme on the main TextChannel.
         '''
 
         for guild in self.client.guilds:
@@ -113,11 +113,12 @@ class Reddit(commands.Cog):
 
             # Check if API Call is needed
             call_delta = dt_now - self.region_timers[region_str]['last_call']
-            call_delta_hours = call_delta.seconds // 3600
+            call_delta_hours = call_delta.seconds / 3600
             if call_delta_hours > self.hours_period:
                 guild_now = TimeHelper.time_from_region(region_str)
                 self.region_timers[region_str]['DateTimeObj'] = guild_now
                 self.region_timers[region_str]['last_call'] = dt_now
+
 
             # Check the time on the guild server
             # Wednesday
@@ -126,7 +127,7 @@ class Reddit(commands.Cog):
                     await MessageFormater.send_msg_in_guild(guild, Reddit.wednesday_meme_url)
 
             # Weeknd
-            elif guild_now.weekday() == TimeHelper.Weekdays.FRIDAY.value:
+            if guild_now.weekday() == TimeHelper.Weekdays.FRIDAY.value:
                 if guild_now.now().hour == self.meme_hour:
                     await MessageFormater.send_msg_in_guild(guild, Reddit.weeknd_meme_url)
 

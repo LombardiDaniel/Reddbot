@@ -1,6 +1,6 @@
 from datetime import datetime
-
 import validators
+import re
 
 import discord
 from discord.ext import commands, tasks
@@ -143,18 +143,18 @@ class Reddit(commands.Cog):
             return
 
         # Check if needs to enter a sub-reddit
-        for word in message.content.replace(',', ' ').split(' '):
+        for word in re.split('\n|\t|,| |;', message.content):
             if 'r/' in word and not validators.url(word):
                 sub_name = word.split('r/')[-1]
+                sub_name = sub_name[0:-1] if sub_name.endswith('/') else sub_name
 
-                sub_link = f'https://www.reddit.com/r/{sub_name}'
+                sub_link = f'https://www.reddit.com/r/{sub_name}/'
                 await message.reply(sub_link)
                 # GET Request was taking too long
                 # if MessageFormater.sub_exists(sub_link):
                 #     await message.reply(sub_link)
                 # else:
                 #     await message.reply(MessageFormater.not_found(sub_link))
-
 
 def setup(client):
     '''

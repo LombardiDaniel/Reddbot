@@ -1,4 +1,5 @@
 [![MIT License](https://img.shields.io/github/license/LombardiDaniel/Reddbot.svg?style=for-the-badge&logo=LibreOffice&logoColor=white)](LICENSE.md)
+[![Build](https://img.shields.io/github/workflow/status/LombardiDaniel/Sebotiao/Builds%20bot%20update/master?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/LombardiDaniel/Reddbot/actions)
 [![tag](https://img.shields.io/github/v/release/LombardiDaniel/Reddbot?include_prereleases&style=for-the-badge)](https://github.com/LombardiDaniel/Reddbot/releases)
 
 

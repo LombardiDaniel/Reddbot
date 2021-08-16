@@ -1,11 +1,13 @@
 from datetime import datetime
 from enum import Enum
+import validators
+import re
 
 import requests
 
 from discord import Embed, Forbidden
 
-class Colours:
+class Colours: # pylint: disable=R0903
     '''Colours'''
     blue = 0x0279fd
     bright_green = 0x01d277
@@ -19,7 +21,7 @@ class Colours:
     yellow = 0xf9f586
 
 
-class TimeHelper:
+class TimeHelper: # pylint: disable=R0903
     '''
     Methods to manage time and the API calls.
     '''
@@ -199,3 +201,24 @@ class MessageFormater:
         msg += "> I will also remind the server when it is Wednesday or when the Weeknd arrives.\n"
 
         return msg
+
+
+def check_reddit_embed(msg: str) -> list:
+    '''
+    Checks for subreddits in the message.
+    Args:
+        msg (str): the message content.
+    Returns:
+        sub_list (list of str): list containing all subreddit names.
+    '''
+
+    msg = repr(msg)
+    sub_list = []
+    for word in re.split(',| |;|\'', msg.replace('\\', ' ').replace("'", ' ')):
+        if 'r/' in word and not validators.url(word):
+            sub_name = word.split('r/')[-1]
+            sub_name = sub_name[0:-1] if sub_name.endswith('/') else sub_name
+
+            sub_list.append(sub_name)
+
+    return sub_list

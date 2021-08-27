@@ -9,7 +9,7 @@ IMAGE="lombardi/reddbot"
 FETCH="git fetch"
 PULL="git pull origin"
 COMPOSE_PATH="/usr/local/bin/docker-compose"
-COMMAND="docker build . && $COMPOSE_PATH down && $COMPOSE_PATH up --build -d"
+COMMAND="git reset --hard && docker build . && $COMPOSE_PATH down && $COMPOSE_PATH up --build -d"
 LOG_FILE="$PRJ_PATH/logs/CD.log"
 
 logthis() {

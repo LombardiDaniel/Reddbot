@@ -95,7 +95,7 @@ class Reddit(commands.Cog):
         '''
         Replies with the bot link.
         '''
-        await ctx.channel.send("> https://discord.com/oauth2/authorize?client_id=865960918243999784&permissions=3072&scope=bot")
+        await ctx.channel.send("> https://discord.com/oauth2/authorize?client_id=865960918243999784&permissions=3072&scope=bot") # pylint: disable=C0301
 
     @tasks.loop(hours=1)
     async def check_day_meme_task(self):
@@ -112,6 +112,7 @@ class Reddit(commands.Cog):
             # Check if API Call is needed
             call_delta = dt_now - self.region_timers[region_str]['last_call']
             call_delta_hours = call_delta.seconds / 3600
+            # this will always be true (as of now)
             if call_delta_hours > self.hours_period:
                 guild_now = TimeHelper.time_from_region(region_str)
                 self.region_timers[region_str]['DateTimeObj'] = guild_now

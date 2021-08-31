@@ -114,6 +114,7 @@ class Reddit(commands.Cog):
             call_delta_hours = call_delta.seconds / 3600
             # this will always be true (as of now)
             if call_delta_hours > self.hours_period:
+                print('Checking Region: ', region_str)
                 guild_now = TimeHelper.time_from_region(region_str)
                 self.region_timers[region_str]['DateTimeObj'] = guild_now
                 self.region_timers[region_str]['last_call'] = dt_now

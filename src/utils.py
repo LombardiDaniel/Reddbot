@@ -83,7 +83,7 @@ class TimeHelper: # pylint: disable=R0903
 
         n_requests = 1
         # don't care for extra info, just want a valid response (e.g. 2xx)
-        while str(response.status_code).startswith('2'):
+        while not str(response.status_code).startswith('2'):
             n_requests += 1 # to keep count of how many requests were needed to get a valid response
             print(f'\tERROR ON URL: "{url}"')
             print('\tSTATUS CODE: ', response.status_code, "TRY NUMBER: ", n_requests)

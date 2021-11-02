@@ -230,3 +230,9 @@ def check_reddit_embed(msg: str) -> list:
             sub_list.append(sub_name)
 
     return sub_list
+
+memes_dict = {
+    TimeHelper.Weekdays.WEDNESDAY.name: 'https://i.imgur.com/uIdY2xe.jpeg',
+    TimeHelper.Weekdays.FRIDAY.name: 'https://www.youtube.com/watch?v=V_cnK8Cd6Ag',
+    TimeHelper.Weekdays.SUNDAY.name: 'https://www.youtube.com/watch?v=cU1E3Bxo2ww',
+}

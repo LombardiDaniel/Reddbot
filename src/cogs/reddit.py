@@ -3,7 +3,7 @@ from datetime import datetime
 import discord
 from discord.ext import commands, tasks
 
-from utils import TimeHelper, MessageFormater, check_reddit_embed # pylint: disable=E0401
+from utils import TimeHelper, MessageFormater, check_reddit_embed, memes_dict # pylint: disable=E0401
 
 
 class Reddit(commands.Cog):
@@ -29,6 +29,7 @@ class Reddit(commands.Cog):
 
     wednesday_meme_url = 'https://i.imgur.com/uIdY2xe.jpeg'
     weeknd_meme_url = 'https://www.youtube.com/watch?v=V_cnK8Cd6Ag'
+    sunday_meme_url = 'https://www.youtube.com/watch?v=cU1E3Bxo2ww'
 
     def __init__(self, client):
         self.client = client
@@ -120,16 +121,27 @@ class Reddit(commands.Cog):
                 self.region_timers[region_str]['last_call'] = dt_now
 
 
-            # Check the time on the guild server
-            # Wednesday
-            if guild_now.weekday() == TimeHelper.Weekdays.WEDNESDAY.value:
-                if guild_now.now().hour == self.meme_hour:
-                    await MessageFormater.send_msg_in_guild(guild, Reddit.wednesday_meme_url)
+            # Check the time on the guild server -> Uses the 'memes_dict' from utils file
+            if guild_now.now().hour == self.meme_hour:           # checks correct meme hour
+            
+                for weekday in TimeHelper.Weekdays:              # for every day of the week
+                    if weekday.value == guild_now.weekday():     # if the meme we are checking is for today
+                        if weekday.name in memes_dict.keys():    # if the today has a value in the memes dict
+                            await MessageFormater.send_msg_in_guild(guild, memes_dict[weekday.name])
 
-            # Weeknd
-            if guild_now.weekday() == TimeHelper.Weekdays.FRIDAY.value:
-                if guild_now.now().hour == self.meme_hour:
-                    await MessageFormater.send_msg_in_guild(guild, Reddit.weeknd_meme_url)
+            # if guild_now.weekday() == TimeHelper.Weekdays.WEDNESDAY.value:
+            #     if guild_now.now().hour == self.meme_hour:
+            #         await MessageFormater.send_msg_in_guild(guild, Reddit.wednesday_meme_url)
+            #
+            # # Weeknd
+            # if guild_now.weekday() == TimeHelper.Weekdays.FRIDAY.value:
+            #     if guild_now.now().hour == self.meme_hour:
+            #         await MessageFormater.send_msg_in_guild(guild, Reddit.weeknd_meme_url)
+            #
+            # # Sunday
+            # if guild_now.weekday() == TimeHelper.Weekdays.SUNDAY.value:
+            #     if guild_now.now().hour == self.meme_hour:
+            #         await MessageFormater.send_msg_in_guild(guild, Reddit.sunday_meme_url)
 
     # AUTO:
     @commands.Cog.listener()
